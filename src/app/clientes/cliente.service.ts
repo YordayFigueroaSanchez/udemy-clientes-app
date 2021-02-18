@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Cliente } from './cliente';
 import { CLIENTES } from './clientes.json';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,9 @@ export class ClienteService {
 
   getClientes():Observable<Cliente[]> {
     /* return of(CLIENTES); */
-    return this.http.get<Cliente[]>(this.urlEndPoint);
+    /* return this.http.get<Cliente[]>(this.urlEndPoint); */
+    return this.http.get(this.urlEndPoint).pipe(
+      map(response => response as Cliente[])
+    );
   }
 }
