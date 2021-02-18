@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Cliente } from './cliente';
@@ -8,9 +9,11 @@ import { CLIENTES } from './clientes.json';
 })
 export class ClienteService {
 
-  constructor() { }
+  private urlEndPoint:string = 'http://localhost:8080/api/clientes';
+  constructor(private http:HttpClient) { }
 
   getClientes():Observable<Cliente[]> {
-    return of(CLIENTES);
+    /* return of(CLIENTES); */
+    return this.http.get<Cliente[]>(this.urlEndPoint);
   }
 }
