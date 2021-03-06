@@ -6,7 +6,10 @@
             Crear cliente
           </button>
         </div>
-        <table class="table table-bordered table-striped">
+        <div *ngIf="clientes.length == 0" class="alert alert-info">
+            no hay registros en la base de datos
+        </div>
+        <table class="table table-bordered table-striped" *ngIf="clientes.length > 0">
             <thead>
                 <tr>
                     <th>Id</th>
