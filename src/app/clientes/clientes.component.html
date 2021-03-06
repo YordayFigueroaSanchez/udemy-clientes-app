@@ -15,6 +15,7 @@
                     <th>email</th>
                     <th>fecha</th>
                     <th>Editar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,9 @@
                     <td>{{usuario.createAt}}</td>
                     <td>
                         <button type="button" name="button" [routerLink]="['/clientes/form', usuario.id]" class="btn btn-primary">editar</button>
+                    </td>
+                    <td>
+                        <button type="button" name="button" (click)="delete(usuario)" class="btn btn-danger">eliminar</button>
                     </td>
                 </tr>
             </tbody>
