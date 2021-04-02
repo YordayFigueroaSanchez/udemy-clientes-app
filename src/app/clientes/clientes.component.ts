@@ -3,6 +3,7 @@ import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import swal from 'sweetalert2'
 import Swal from 'sweetalert2';
+import { tap } from 'rxjs/operators';
 
 const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -25,7 +26,16 @@ export class ClientesComponent implements OnInit {
   constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
-    this.clienteService.getClientes().subscribe(
+    this.clienteService.getClientes().pipe(
+      tap(clientes => {
+        console.log('tap 3 - ClienteComponent');
+        
+        clientes.forEach(element => {
+          console.log(element.nombre);
+        });
+      })
+    )
+    .subscribe(
       clientes => this.clientes = clientes
     );
   }
